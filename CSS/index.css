@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+.main-hero {
+    background-color: #EF3B24ea;
+    height: 100vh;
+    position: relative;
+}
+  
+.main-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url("../assets/bg_wallpaper.svg");
+    background-position: center center;
+    background-size: cover;
+    background-color: #EF3B24ea;
+    z-index: -1;
+  }
+.heading-box {
+    height: 100vh;
+    width: 13%;
+    background-color: black;;
+    float: right;
+    text-align: center;
+}
+.heading{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    color: white;
+    font-size: 150px;
+}
+.gamePortion {
+    border: 3px white solid;
+    width: 75%;
+    height: 90vh;
+    padding: 20px 80px 20px 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.player1CardsArea {
+    /* border: 1px white solid; */
+    width: 100%;
+    height: 25vh;
+    display: flex;
+    justify-self: center;
+    justify-content: space-between;
+}
+
+.player2CardsArea {
+    /* border: 1px white solid; */
+    width: 100%;
+    height: 25vh;
+    display: flex;
+    align-self: flex-end;
+    justify-content: space-between;
+}
+
+.playAreaStyle {
+    width: 100%;
+    height: 26vh;
+    align-self: center;
+}
+
+.remainingDeckStyle {
+    width: 8.2vw;
+    height: inherit;
+    margin-left: 6vw;
+    display: inline-block;
+}   
+
+.mainPlayStyle {
+    width: 8.2vw;
+    height: inherit;
+    margin-left: 19vw;
+    display: inline-block;
+}
+.playerButtons{
+    float: right;
+    width: 8vw;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
