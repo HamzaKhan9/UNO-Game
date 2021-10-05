@@ -295,6 +295,10 @@ function clickOnCard(playerTurn, cardOfPlayer) {
 }
 function revealPlayerCards(playerTurn) {
   if (playerTurn === null) {
+    if (player1Cards.length === 0 || player2Cards.length === 0) {
+      document.write("GAME ENDS");
+      return null;
+    }
     let player1InnerHtml = "";
     let player2InnerHtml = "";
     let playAreaInnerHtml = `<img src="${currentCard.ImgURL}" class= "cardsstyle"/>`;
