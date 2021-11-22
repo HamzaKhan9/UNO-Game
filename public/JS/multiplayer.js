@@ -186,6 +186,8 @@ function startingScreen() {
   document.getElementById("RemainingDeckArea").innerHTML =
     remainingDeckInnerHtml;
   document.getElementById("mainPlayArea").innerHTML = playAreaInnerHtml;
+  let currentColor = document.querySelector(":root");
+  currentColor.style.setProperty("--currentcolor", currentCard.CardColor);
 }
 function minusCard(player, cardOfPlayer) {
   let playerCards = "";
@@ -255,7 +257,6 @@ function clickOnCard(playerTurn, cardOfPlayer) {
 
   if (playerTurn === 2) {
     let checker = conditionCheck(cardOfPlayer);
-    console.log(checker);
     if (checker[0] === true) {
       currentCard = cardOfPlayer;
       minusCard(playerTurn, cardOfPlayer);
@@ -295,9 +296,28 @@ function clickOnCard(playerTurn, cardOfPlayer) {
 }
 function revealPlayerCards(playerTurn) {
   if (playerTurn === null) {
+    console.log(scoreLimit);
     if (player1Cards.length === 0 || player2Cards.length === 0) {
-      document.write("GAME ENDS");
-      return null;
+      player1Score = player1Score + countScore(player2Cards);
+      player2Score = player2Score + countScore(player1Cards);
+      if (player1Score >= scoreLimit || player2Score >= scoreLimit) {
+        document.getElementById("gameoverContainer").style.display = "unset";
+        if (player1Score >= scoreLimit) {
+          document.getElementById("winningPlayer").innerHTML = "PLAYER 1 WINS";
+        } else {
+          document.getElementById("winningPlayer").innerHTML = "PLAYER 2 WINS";
+        }
+      } else {
+        let player1ScoreInnerHtml = "";
+        let player2ScoreInnerHtml = "";
+        player1ScoreInnerHtml += `${player1Score}`;
+        player2ScoreInnerHtml += `${player2Score}`;
+        document.getElementById("player1Score").innerHTML =
+          player1ScoreInnerHtml;
+        document.getElementById("player2Score").innerHTML =
+          player2ScoreInnerHtml;
+        document.getElementById("scoreContainer").style.display = "unset";
+      }
     }
     let player1InnerHtml = "";
     let player2InnerHtml = "";
@@ -314,18 +334,19 @@ function revealPlayerCards(playerTurn) {
     document.getElementById("RemainingDeckArea").innerHTML =
       remainingDeckInnerHtml;
     document.getElementById("mainPlayArea").innerHTML = playAreaInnerHtml;
+    let currentColor = document.querySelector(":root");
+    currentColor.style.setProperty("--currentcolor", currentCard.CardColor);
   }
   if (playerTurn === 1) {
     let player1InnerHtml = "";
     let player2InnerHtml = "";
     let playAreaInnerHtml = `<img src="${currentCard.ImgURL}" class= "cardsstyle"/>`;
-    let remainingDeckInnerHtml = `<img src="./assets/UNO CARDS/UNO-Back_1.png" class= "cardsstyle" onclick="clickOnCard(${playerTurn},0)" />`;
+    let remainingDeckInnerHtml = `<img src="./assets/UNO CARDS/UNO-Back_1.png" class= "cardsstyle" onclick="clickOnCard(${playerTurn},0)" onmouseover="this.style.boxShadow='0 0 20px #999999'" onmouseleave="this.style.boxShadow='0 0 0'"/>`;
     for (let i = 0; i < player2Cards.length; i++) {
       player2InnerHtml += `<div><img src="./assets/UNO CARDS/UNO-Back_1.png" class= "cardsstyle"/></div>`;
     }
     for (let i = 0; i < player1Cards.length; i++) {
-      let id = `no${i}Player1`;
-      player1InnerHtml += `<div id="no${i}Player1" onclick="clickOnCard(${playerTurn} , player1Cards[${i}])"><img src="${player1Cards[i].ImgURL}" class= "cardsstyle"/></div>`;
+      player1InnerHtml += `<div id="no${i}Player1" onclick="clickOnCard(${playerTurn} , player1Cards[${i}])"><img src="${player1Cards[i].ImgURL}" class= "cardsstyle" onmouseover="this.style.boxShadow='0 0 20px #999999'" onmouseleave="this.style.boxShadow='0 0 0'"/></div>`;
     }
     document.getElementById("player1Cards").innerHTML = player1InnerHtml;
     document.getElementById("player2Cards").innerHTML = player2InnerHtml;
@@ -337,13 +358,12 @@ function revealPlayerCards(playerTurn) {
     let player1InnerHtml = "";
     let player2InnerHtml = "";
     let playAreaInnerHtml = `<img src="${currentCard.ImgURL}" class= "cardsstyle"/>`;
-    let remainingDeckInnerHtml = `<img src="./assets/UNO CARDS/UNO-Back_1.png" class= "cardsstyle" onclick="clickOnCard(${playerTurn},0)"/>`;
+    let remainingDeckInnerHtml = `<img src="./assets/UNO CARDS/UNO-Back_1.png" class= "cardsstyle" onclick="clickOnCard(${playerTurn},0)" onmouseover="this.style.boxShadow='0 0 20px #999999'" onmouseleave="this.style.boxShadow='0 0 0'"/>`;
     for (let i = 0; i < player1Cards.length; i++) {
       player1InnerHtml += `<div><img src="./assets/UNO CARDS/UNO-Back_1.png" onclick="clickOnCard(${playerTurn},remainingDeck)" class= "cardsstyle"/></div>`;
     }
     for (let i = 0; i < player2Cards.length; i++) {
-      let id = `no${i}Player2`;
-      player2InnerHtml += `<div id="no${i}Player2" onclick="clickOnCard(${playerTurn} , player2Cards[${i}])"><img src="${player2Cards[i].ImgURL}" class= "cardsstyle"/></div>`;
+      player2InnerHtml += `<div id="no${i}Player2" onclick="clickOnCard(${playerTurn} , player2Cards[${i}])"><img src="${player2Cards[i].ImgURL}" class= "cardsstyle" onmouseover="this.style.boxShadow='0 0 20px #999999'" onmouseleave="this.style.boxShadow='0 0 0'"/></div>`;
     }
     document.getElementById("player1Cards").innerHTML = player1InnerHtml;
     document.getElementById("player2Cards").innerHTML = player2InnerHtml;
@@ -358,18 +378,13 @@ function conditionCheck(card) {
     card.CardName === currentCard.CardName ||
     card.CardColor === "BLACK"
   ) {
-    console.log({ currentCard, card });
     if (card.CardName === "SKIP" || card.CardName === "REVERSE") {
       return [true, "SKIP"];
     } else if (card.CardName === "DRAW TWO") {
       return [true, "DRAW TWO"];
     } else if (card.CardName === "WILD") {
-      console.log("card.CardName: ", card.CardName);
-
       return [true, "WILD"];
     } else if (card.CardName === "WILD DRAW FOUR") {
-      console.log("card.CardName: ", card.CardName);
-
       return [true, "WILD DRAW FOUR"];
     } else {
       return [true];
@@ -379,40 +394,80 @@ function conditionCheck(card) {
   }
   return [false];
 }
-function clickOnColor(color, currentTurn) {
+function clickOnColor(color) {
+  let currentColor = document.querySelector(":root");
   if (color === "red") {
-    console.log("HI");
     currentCard.CardColor = "RED";
+    currentColor.style.setProperty("--currentcolor", "red");
     document.getElementById("colorModal").style.display = "none";
   } else if (color === "blue") {
     currentCard.CardColor = "BLUE";
+    currentColor.style.setProperty("--currentcolor", "blue");
     document.getElementById("colorModal").style.display = "none";
   } else if (color === "green") {
     currentCard.CardColor = "GREEN";
+    currentColor.style.setProperty("--currentcolor", "green");
     document.getElementById("colorModal").style.display = "none";
   } else {
     currentCard.CardColor = "YELLOW";
+    currentColor.style.setProperty("--currentcolor", "yellow");
     document.getElementById("colorModal").style.display = "none";
   }
 }
+function countScore(arr) {
+  let score = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].CardType === "SPECIAL") {
+      if (arr[i].CardColor === "BLACK") {
+        score += 50;
+      } else score += 20;
+    } else if (arr[i].CardType === "NORMAL") {
+      score += arr[i].CardName;
+    }
+  }
+  return score;
+}
+function newRound() {
+  document.getElementById("scoreContainer").style.display = "none";
+  newGame();
+}
+function newGame() {
+  mixedDeck = mixing(cardsDeck);
+  distributedCards = distributingCards(mixedDeck);
+  player1Cards = distributedCards[1];
+  player2Cards = distributedCards[2];
+  remainingDeck = distributedCards[0];
+  currentCardPick = cardToStart(remainingDeck);
+  currentCard = currentCardPick[1];
+  remainingDeck = currentCardPick[0];
+  scoreLimit = localStorage.getItem("ScoreLimit");
+  scoreLimit = JSON.parse(scoreLimit);
+  startingScreen();
+  let randomNum = Math.floor(Math.random() * (3 - 1) + 1);
+  currentTurn = randomNum;
+  document.getElementById("player1Button").addEventListener("click", () => {
+    if (currentTurn === 1) {
+      revealPlayerCards(1);
+    }
+  });
+  document.getElementById("player2Button").addEventListener("click", () => {
+    if (currentTurn === 2) {
+      revealPlayerCards(2);
+    }
+  });
+}
+
 const cardsDeck = deckBuilding();
-let mixedDeck = mixing(cardsDeck);
-let distributedCards = distributingCards(mixedDeck);
-let player1Cards = distributedCards[1];
-let player2Cards = distributedCards[2];
-let remainingDeck = distributedCards[0];
-let currentCardPick = cardToStart(remainingDeck);
-let currentCard = currentCardPick[1];
-remainingDeck = currentCardPick[0];
-startingScreen();
-let currentTurn = 1;
-document.getElementById("player1Button").addEventListener("click", () => {
-  if (currentTurn === 1) {
-    revealPlayerCards(1);
-  }
-});
-document.getElementById("player2Button").addEventListener("click", () => {
-  if (currentTurn === 2) {
-    revealPlayerCards(2);
-  }
-});
+let mixedDeck;
+let distributedCards;
+let player1Cards;
+let player2Cards;
+let remainingDeck;
+let currentCardPick;
+let currentCard;
+let currentTurn;
+let scoreLimit;
+let player1Score = 0;
+let player2Score = 0;
+
+newGame();

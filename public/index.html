@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./CSS/mainMenu.css" />
+    <title>MAIN MENU</title>
+  </head>
+  <body>
+    <div class="image"></div>
+    <h1 class="gameHeading">UNO</h1>
+    <div class="menu">
+      <a onclick="singleplayerClicked()" id="singleplayer" class="menu-item">SINGLE PLAYER></a>
+      <a onclick="multiplayerClicked()" id="multiplayer" class="menu-item">MULTIPLAYER></a>
+      <a onclick="instructionsClicked()" class="menu-item">INSTRUCTIONS></a>
+      <a onclick="settingsClicked()" class="menu-item">SETTINGS></a>
+    </div>
+    <div class="modalContainer" id="selectScoreContainer">
+      <div class="modalArea">
+        <h1 class="score-title">SELECT SCORE</h1>
+        <div>
+          <div>
+            <button
+              id="scoreOption1"
+              class="scoreOptions"
+              onclick="scoreButtonClicked(1)"
+            >50</button>
+            <button
+              id="scoreOption2"
+              class="scoreOptions"
+              onclick="scoreButtonClicked(2)"
+            >100</button>
+            <button
+              id="scoreOption3"
+              class="scoreOptions"
+              onclick="scoreButtonClicked(3)"
+            >150</button>
+            <button
+              id="scoreOption4"
+              class="scoreOptions"
+              onclick="scoreButtonClicked(4)"
+            >200</button>
+          </div>
+          <div
+            style="display: flex; flex-direction: column; align-items: center"
+          >
+            <h4
+              style="
+                padding: 3rem 0 1rem 0;
+                margin: 0%;
+                font-size: 2rem;
+                font-family: 'Times New Roman', Times, serif;
+              "
+            >
+              CUSTOM SCORE (1 - 1000)
+            </h4>
+            <input
+              class="customScore"
+              type="number"
+              value="0"
+              id="customScore"
+            />
+          </div>
+        </div>
+        <button
+          id="prceedButton"
+          class="score__btn"
+          onclick="proceedButtonClicked()"
+        >
+          PROCEED &rarr;
+        </button>
+        <button
+          id="backButton"
+          onclick="document.getElementById(`selectScoreContainer`).style.display = `none`;"
+          class="score__btn"
+        >
+          BACK &larr;
+        </button>
+      </div>
+    </div>
+    <div class="modalContainer" id="instructionsContainer">
+      <div class="modalArea">
+        <h1 class="instructionsHeading">INSTRUCTIONS</h1>
+        <div style="display: flex; flex-direction: row">
+          <p class="intructionsText">
+            <b>Their are 108 cards as follows:</b><br />
+            19 Blue cards - 0 to 9<br />
+            19 Green cards - 0 to 9<br />
+            19 Red cards - 0 to 9<br />
+            19 Yellow cards - 0 to 9<br />
+            8 Skip cards - 2 each in Blue, Green, Red and Yellow<br />
+            8 Reverse cards - 2 each in Blue, Green, Red and Yellow<br />
+            8 Draw 2 cards - 2 each in Blue, Green, Red and Yellow<br />
+            4 Wild cards<br />
+            4 Wild Draw 4 cards<br />
+          </p>
+          <p class="intructionsText">
+            <b>RULES:</b><br />If you are playing scoring enabled then the first
+            player to play all of the cards in their hand in each round scores
+            points for the cards their opponents are left holding. The first
+            player to score selected score wins the game. And if you are playing
+            scoring disabled then the first player to play all the cards
+            WINS.<br />
+            Scoring of the player wins calculated as follows:<br />
+            All number cards (0-9): &emsp;Face Value<br />
+            Draw 2: &emsp; 20 Points<br />
+            Reverse:&emsp; 20 Points<br />
+            Skip: &emsp; 20 Points<br />
+            Wild: &emsp; 50 Points<br />
+            Wild Draw 4: &emsp;50 Points<br />
+          </p>
+          <p class="intructionsText">
+            <b>HOW TO PLAY:</b><br />
+            First shuffle the deck and distribute it among players. Then pick 1
+            card from the shuffled deck and place it over to start the play. The
+            player who wins the toss have the first turn and he will start to
+            play. The player is only allowed to play a card which matches the
+            color or number on the play card. If it is a special type than he
+            can also play a same special card of different color. Special Cards
+            such as: Draw two: Add 2 cards from the remaining deck to opponent.
+            Skip: Skips the turn of the opponent. Reverse: Return the turn again
+            to the player. Wild: This card can be played any time and player can
+            choose your color. Wild Draw Four: This card can also be played any
+            time and player can choose color and also add 4 cards to opponent.
+          </p>
+        </div>
+        <div style="display: flex; justify-content: center">
+          <button
+            onclick="document.getElementById(`instructionsContainer`).style.display = `none`;"
+            class="backBtn"
+          >
+            BACK TO MAIN MENU &larr;
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="modalContainer" id="settingsContainer">
+      <div class="modalArea">
+        <h1 class="instructionsHeading">SETTINGS</h1>
+        <div style="display: flex; margin-bottom: 3vh;">
+          <h1>Scoring</h3>
+          <div class="settingButtonContainer">
+          <button
+            value="On"
+            class="onoffButton"
+            id="onoffScoring"
+            onclick="onoffScoring();"
+          >
+            ON &emsp; OFF
+          </button>
+          </div>
+        </div>
+        <div style="display: flex; margin-bottom: 3vh;">
+          <h1>Sound</h3>
+          <div class="settingButtonContainer">
+            <button
+            value="On"
+            class="onoffButton"
+            id="onoffSound"
+            onclick="onoffSound();"
+            >
+            ON &emsp; OFF
+            </button>
+          </div>
+        </div>
+        <div style="display: flex; margin-bottom: 10vh;">
+            <h1>THEME</h1>
+            <div style="display: flex;margin-left: 4vw; justify-content: flex-end; width: 35vw;">
+                <input type="button" onclick="selectTheme(1);" class="themeButtons theme1Button" >
+                <input type="button" onclick="selectTheme(2);" class="themeButtons theme2Button">
+                <input type="button" onclick="selectTheme(3);" class="themeButtons theme3Button">
+                <input type="button" onclick="selectTheme(4);" class="themeButtons theme4Button">
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center">
+          <button
+            onclick="document.getElementById(`settingsContainer`).style.display = `none`;"
+            class="backBtn"
+          >
+            BACK TO MAIN MENU &larr;
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./JS/mainMenu.js"></script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/multiplayer.css"/>
+    <title>UNO MULTIPLAYER</title>
+</head>
+<body class="body">
+    <div class="main-hero">
+        <div class="gamePortion">
+                <div class="player1CardsArea" id="player1Cards"></div>
+                <div class="playAreaStyle">
+                    <div class="remainingDeckStyle" id="RemainingDeckArea"></div>
+                    <div class="mainPlayStyle" id="mainPlayArea"></div>
+                    <div class="current-color"></div>
+                    <div class="playerButtons">
+                        <div id="turnArrow1">
+                            <img class="turnArrow" src="./assets/right arrow.png">
+                            <input id="player1Button" type="button" value="PLAYER 1" class="playerButton">
+                        </div>
+                        <div id="turnArrow2" class="turnArrow2" >
+                            <img class="turnArrow" src="./assets/right arrow.png">
+                            <input id="player2Button" type="button" value="PLAYER 2" class="playerButton">
+                        </div>
+                    </div>
+                </div>
+                <div class="player2CardsArea" id="player2Cards">
+                </div>
+        </div>
+        <div id="colorModal" class="modal">
+            <div class="pickColor" style="top: 40.5%;;left: 46.5%;">
+                <div class="pickRed" onclick="clickOnColor('red')"></div>
+                <div class="pickBlue" onclick="clickOnColor('blue')"></div>
+            </div>
+            <div class="pickColor" style="top: 49%;;left: 46.5%;">
+                <div class="pickGreen" onclick="clickOnColor('green')"></div>
+                <div class="pickYellow" onclick="clickOnColor('yellow')"></div>
+            </div>
+        </div>
+        <div class="scoreContainer" id="scoreContainer">
+            <div class="scoreArea">
+              <h1 class="score-title">SCOREBOARD</h1>
+              <div id="scoreBox" class="player-score-box">
+                <div class="score-heading">
+                        <div>
+                            <div>PLAYER 1 SCORE</div><div id="player1Score" style="margin-left: 35%;"><br></div>
+                        </div>
+                        <div>
+                            <div>PLAYER 2 SCORE</div><div id="player2Score" style="margin-left: 35%;"><br></div>
+                        </div>  
+                </div>
+              <button class="score__btn" onclick= "newRound()">PLAY NEXT ROUND &rarr;</button>
+              <button class="score__btn" onclick="window.location.href = `./index.html`">Main Menu &larr;</button>
+             </div>
+            </div>
+        </div>
+        <div class="gameoverContainer" id="gameoverContainer">
+            <div class="scoreArea">
+                <h1 class="score-title" style="font-family: 'Major Mono Display', monospace;;font-size: 3rem;">GAMEOVER</h1>
+                <div><img src="./assets/win.gif" style="width: 39.5vw;;height: 15vh;;border: black 3px solid;" ></div>
+                <div id="winningPlayer" style="font-size: 2.3rem;;font-family: 'Kumar One Outline', cursive;;text-align: center;;color: black;"></div>
+                <button class="score__btn" onclick= "window.location.href = `./multiplayer.html`">PLAY AGAIN WITH SAME SCORE &rarr;</button>
+                <button class="score__btn" onclick="window.location.href = `./index.html`">Main Menu &larr;</button>            
+            </div>
+        </div>
+    <script src="./JS/multiplayer.js"></script>
+</body>
+</html>

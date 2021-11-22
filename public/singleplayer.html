@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/singleplayer.css" />
+    <title>UNO SINGLEPLAYER</title>
+  </head>
+  <body class="body">
+    <audio id="turnSwitch" src="./assets/turnSwitch.wav"></audio>
+    <div class="startGame" id="startGame">
+      <div class="startGameBox">
+        <div id="toss" class="toss"></div>
+        <button class="startGameButton" onclick="newGame()">START GAME</button>
+      </div>
+    </div>
+    <div class="main-hero">
+      <div class="gamePortion">
+        <div class="computerCardsArea" id="computerCards"></div>
+        <div class="playAreaStyle">
+          <div class="remainingDeckStyle" id="RemainingDeckArea"></div>
+          <div class="mainPlayStyle" id="mainPlayArea"></div>
+          <div class="current-color"></div>
+        </div>
+        <div class="playerCardsArea" id="playerCards"></div>
+      </div>
+    </div>
+    <div id="colorModal" class="modal">
+      <div class="pickColor" style="top: 40.5%; left: 46.5%">
+        <div class="pickRed" onclick="clickOnColor('red')"></div>
+        <div class="pickBlue" onclick="clickOnColor('blue')"></div>
+      </div>
+      <div class="pickColor" style="top: 49%; left: 46.5%">
+        <div class="pickGreen" onclick="clickOnColor('green')"></div>
+        <div class="pickYellow" onclick="clickOnColor('yellow')"></div>
+      </div>
+    </div>
+    <div class="scoreContainer" id="scoreContainer">
+      <div class="scoreArea">
+        <h1 class="score-title">SCOREBOARD</h1>
+        <div id="scoreBox" class="player-score-box">
+          <div class="score-heading">
+            <div>
+              <div>COMPUTER SCORE</div>
+              <div id="computerScore" style="margin-left: 35%"><br /></div>
+            </div>
+            <div>
+              <div>PLAYER SCORE</div>
+              <div id="playerScore" style="margin-left: 35%"><br /></div>
+            </div>
+          </div>
+          <button class="score__btn" onclick="newRound()">
+            PLAY NEXT ROUND &rarr;
+          </button>
+          <button
+            class="score__btn"
+            onclick="window.location.href = `./index.html`"
+          >
+            Main Menu &larr;
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="gameoverContainer" id="gameoverContainer">
+      <div class="scoreArea">
+        <h1
+          class="score-title"
+          style="font-family: 'Major Mono Display', monospace; font-size: 3rem"
+        >
+          GAMEOVER
+        </h1>
+        <div>
+          <img src="./assets/win.gif" id="winningImage" class="gameoverGIF" />
+        </div>
+        <div
+          id="winningPlayer"
+          style="
+            font-size: 2.3rem;
+            font-family: 'Kumar One Outline', cursive;
+            text-align: center;
+            color: black;
+          "
+        ></div>
+        <button
+          class="score__btn"
+          onclick="window.location.href = `./singleplayer.html`"
+          id="gameOverButton"
+        >
+          PLAY AGAIN WITH SAME SCORE &rarr;
+        </button>
+        <button
+          class="score__btn"
+          onclick="window.location.href = `./index.html`"
+        >
+          Main Menu &larr;
+        </button>
+      </div>
+    </div>
+    <script src="./JS/singleplayer.js"></script>
+  </body>
+</html>
