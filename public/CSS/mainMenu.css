@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Ceviche+One&family=Rubik+Beastly&display=swap");
 
 :root {
-  /* THEME 1 */
   --theme-bg-color: linear-gradient(
     200deg,
     rgba(3, 2, 2) 0%,
@@ -24,75 +23,6 @@
     rgba(153, 101, 29, 1) 100%
   );
   --theme-buttons-color: #b52509;
-
-  /* THEME 2 */
-  --theme2-bg-color: linear-gradient(
-    200deg,
-    rgba(0, 0, 0) 5%,
-    rgba(65, 103, 240) 41%,
-    rgba(0, 39, 189) 61%,
-    rgba(87, 226, 215) 100%
-  );
-  --theme2-front-color: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(65, 103, 240, 1) 10%,
-    rgba(0, 39, 189, 1) 50%,
-    rgba(36, 116, 200, 1) 90%,
-    rgba(0, 0, 0, 1) 100%
-  );
-  --theme2-box-color: linear-gradient(
-    200deg,
-    rgba(0, 39, 189, 1) 0%,
-    rgb(71, 185, 176) 100%
-  );
-  --theme2-buttons-color: #242c6d;
-
-  /* THEME3 */
-  --theme3-bg-color: linear-gradient(
-    199deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(185, 65, 240, 1) 41%,
-    rgba(95, 0, 189, 1) 61%,
-    rgba(111, 14, 74, 1) 100%
-  );
-  --theme3-front-color: linear-gradient(
-    to right,
-    rgba(3, 2, 2) 0%,
-    rgba(185, 65, 240, 1) 10%,
-    rgba(95, 0, 189, 1) 50%,
-    rgba(185, 65, 240, 1) 90%,
-    rgba(3, 2, 2) 100%
-  );
-  --theme3-box-color: linear-gradient(
-    200deg,
-    rgba(185, 65, 240, 1) 0%,
-    rgb(86, 13, 160) 100%
-  );
-  --theme3-buttons-color: #570c6e;
-
-  /* THEME4 */
-  --theme4-bg-color: linear-gradient(
-    199deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(119, 217, 48, 1) 41%,
-    rgba(5, 92, 34, 1) 61%,
-    rgba(158, 156, 0, 1) 100%
-  );
-  --theme4-front-color: linear-gradient(
-    to right,
-    rgba(3, 2, 2) 0%,
-    rgba(119, 217, 48, 1) 10%,
-    rgba(5, 92, 34, 1) 50%,
-    rgba(119, 217, 48, 1) 90%,
-    rgba(3, 2, 2) 100%
-  );
-  --theme4-box-color: linear-gradient(
-    200deg,
-    rgba(119, 217, 48, 1) 0%,
-    rgba(5, 92, 34, 1) 100%
-  );
-  --theme4-buttons-color: #18723d;
 }
 
 input::-webkit-outer-spin-button,
@@ -111,17 +41,14 @@ body {
   background: var(--theme-bg-color);
 }
 .gameHeading {
-  grid-column: 2;
-  grid-row-start: 0;
+  position: absolute;
   font-family: "Rubik Beastly", cursive;
-  justify-self: start;
-  align-self: end;
+  justify-self: center;
   font-size: 100px;
-  margin: 0 50px 0 0px;
+  margin-top: 15px;
 }
 .menu {
-  grid-column-start: 2;
-  grid-row-start: 2;
+  position: absolute;
   align-self: center;
   justify-self: center;
   display: flex;
@@ -130,7 +57,6 @@ body {
 }
 .menu-item {
   text-decoration: none;
-  width: 25vw;
   height: 50px;
   margin: 10px 0 0 0;
   font-size: 50px;
@@ -197,7 +123,6 @@ body {
   border-radius: 1rem;
   visibility: unset;
   color: hsl(220, 50%, 90%);
-  /* background: rgb(249, 16, 16); */
   background: var(--theme-box-color);
 }
 .score-title {
@@ -302,11 +227,6 @@ body {
 
 /* SETTINGS STYLING */
 .onoffButton {
-  background-image: -webkit-linear-gradient(
-    left,
-    var(--theme-buttons-color) 51%,
-    rgb(160, 154, 154) 50%
-  );
   align-self: center;
   width: 8rem;
   height: 2.5rem;
@@ -321,8 +241,23 @@ body {
   width: 100%;
   justify-content: right;
 }
+.onButton {
+  background-image: -webkit-linear-gradient(
+    left,
+    var(--theme-buttons-color) 51%,
+    rgb(160, 154, 154) 50%
+  );
+}
+.offButton {
+  background-image: -webkit-linear-gradient(
+    left,
+    rgb(160, 154, 154) 50%,
+    var(--theme-buttons-color) 51%
+  );
+}
 .themeButtons {
   width: 6vw;
+  height: 13vh;
   border-radius: 1em;
   margin-left: 5px;
 }

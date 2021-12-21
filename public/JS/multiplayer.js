@@ -173,6 +173,7 @@ function cardToStart(mixedDeck) {
   }
 }
 function startingScreen() {
+  turnSwitchEffect();
   let player1InnerHtml = "";
   let player2InnerHtml = "";
   let playAreaInnerHtml = `<img src="${currentCard.ImgURL}" class= "cardsstyle"/>`;
@@ -213,6 +214,24 @@ function addCard(player, noOfCards) {
   for (i = 0; i < noOfCards; i++) {
     let remainingDeckCard = remainingDeck.shift();
     playerCards.push(remainingDeckCard);
+  }
+}
+function turnSwitchEffect() {
+  let player1Turn = document.getElementById("player1Cards");
+  let player2Turn = document.getElementById("player2Cards");
+  let audio = document.getElementById("turnSwitch");
+  if (currentTurn === 1) {
+    player1Turn.style.borderImageSlice = "1";
+    player2Turn.style.borderImageSlice = "0";
+    if (sound === "On") {
+      audio.play();
+    }
+  } else if (currentTurn === 2) {
+    player2Turn.style.borderImageSlice = "1";
+    player1Turn.style.borderImageSlice = "0";
+    if (sound === "On") {
+      audio.play();
+    }
   }
 }
 function clickOnCard(playerTurn, cardOfPlayer) {
@@ -319,6 +338,7 @@ function revealPlayerCards(playerTurn) {
         document.getElementById("scoreContainer").style.display = "unset";
       }
     }
+    turnSwitchEffect();
     let player1InnerHtml = "";
     let player2InnerHtml = "";
     let playAreaInnerHtml = `<img src="${currentCard.ImgURL}" class= "cardsstyle"/>`;
@@ -440,11 +460,12 @@ function newGame() {
   currentCardPick = cardToStart(remainingDeck);
   currentCard = currentCardPick[1];
   remainingDeck = currentCardPick[0];
+  scoring = localStorage.getItem("scoring");
+  sound = localStorage.getItem("sound");
   scoreLimit = localStorage.getItem("ScoreLimit");
   scoreLimit = JSON.parse(scoreLimit);
+  document.getElementById("startGame").style.display = "none";
   startingScreen();
-  let randomNum = Math.floor(Math.random() * (3 - 1) + 1);
-  currentTurn = randomNum;
   document.getElementById("player1Button").addEventListener("click", () => {
     if (currentTurn === 1) {
       revealPlayerCards(1);
@@ -469,5 +490,26 @@ let currentTurn;
 let scoreLimit;
 let player1Score = 0;
 let player2Score = 0;
-
-newGame();
+let scoring = "On";
+let sound = "On";
+let randomNum = Math.floor(Math.random() * (3 - 1) + 1);
+currentTurn = randomNum;
+document.documentElement.style.setProperty(
+  "--theme-bg-color",
+  localStorage.getItem("backgroundColor")
+);
+document.documentElement.style.setProperty(
+  "--theme-box-color",
+  localStorage.getItem("boxColor")
+);
+document.documentElement.style.setProperty(
+  "--theme-buttons-color",
+  localStorage.getItem("buttonColor")
+);
+let tossWinner;
+if (currentTurn === 1) {
+  tossWinner = "PLAYER 1";
+} else if (currentTurn === 2) {
+  tossWinner = "PLAYER 2";
+}
+document.getElementById("toss").innerHTML = `${tossWinner} WON THE TOSS`;
